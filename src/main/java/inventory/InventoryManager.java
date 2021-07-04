@@ -9,11 +9,9 @@ public class InventoryManager {
 
     private static InventoryManager inventoryManager;
     private HashMap<String, Integer> ingredients = new HashMap<>();
-    ;
 
 
     private InventoryManager() {
-
 
     }
 
@@ -21,15 +19,6 @@ public class InventoryManager {
         ingredients.clear();
     }
 
-//    //Using Holder pattern ensures thread safe initialisation of the object,
-//    private static class InventoryManagerHolder {
-//        public static final InventoryManager instance = new InventoryManager();
-//    }
-//
-//    public static InventoryManager getInstance() {
-//        return InventoryManagerHolder.instance;
-//    }
-//
 
     public void addStockIntoInventory(String name, int quantity) {
 
@@ -44,32 +33,33 @@ public class InventoryManager {
         return inventoryManager;
     }
 
-    //Making this thread safe by synchronizing
+    // this will make
+    // it thread safe
     public synchronized boolean checkAndUpdateInventory(Beverage beverage) {
         Map<String, Integer> requiredIngredientMap = beverage.getBeverageIngred();
-        boolean isPossible = true;
+        boolean canBePrepared = true;
 
         for (String ingredient : requiredIngredientMap.keySet()) {
-            int ingredientInventoryCount = ingredients.getOrDefault(ingredient, -1);
-            if (ingredientInventoryCount == -1 || ingredientInventoryCount == 0) {
+            int ingredInventCount = ingredients.getOrDefault(ingredient, -1);
+            if (ingredInventCount == -1 || ingredInventCount == 0) {
                 System.out.println(beverage.getDrinkName() + " cannot be prepared because " + ingredient + " is not available");
-                isPossible = false;
+                canBePrepared = false;
                 break;
-            } else if (requiredIngredientMap.get(ingredient) > ingredientInventoryCount) {
+            } else if (requiredIngredientMap.get(ingredient) > ingredInventCount) {
                 System.out.println(beverage.getDrinkName() + " cannot be prepared because " + ingredient + " is not sufficient");
-                isPossible = false;
+                canBePrepared = false;
                 break;
             }
         }
 
-        if (isPossible) {
+        if (canBePrepared) {
             for (String ingredient : requiredIngredientMap.keySet()) {
-                int existingInventory = ingredients.getOrDefault(ingredient, 0);
-                ingredients.put(ingredient, existingInventory - requiredIngredientMap.get(ingredient));
+                int existsInInventory = ingredients.getOrDefault(ingredient, 0);
+                ingredients.put(ingredient, existsInInventory - requiredIngredientMap.get(ingredient));
             }
         }
 
-        return isPossible;
+        return canBePrepared;
     }
 
 

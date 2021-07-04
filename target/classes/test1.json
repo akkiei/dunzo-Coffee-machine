@@ -4,11 +4,11 @@
       "count_n": 40
     },
     "total_items_quantity": {
-      "hot_water": 10,
-      "hot_milk": 10,
+      "hot_water": 200,
+      "hot_milk": 100,
       "ginger_syrup": 10,
       "sugar_syrup": 10,
-      "tea_leaves_syrup": 10
+      "tea_leaves_syrup": 40
     },
     "beverages": {
       "hot_tea": {

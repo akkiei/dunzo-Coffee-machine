@@ -14,7 +14,6 @@ public class Machines {
         this.listOfBeverages = listOfBeverages;
     }
 
-
     public Machines(int no_of_outlets, HashMap listOfBeverages) {
         this.no_of_outlets = no_of_outlets;
         this.listOfBeverages = listOfBeverages;

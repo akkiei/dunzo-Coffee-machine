@@ -9,10 +9,16 @@ import model.*;
 public class Main {
 
     public static void main(String argv[]) throws IOException {
-
+        //Path of given input json file
         String path = "src/main/resources/input.json";
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
 
+        // JSON input files to test other cases
+        // UNCOMMENT anyone to test with other JSON file
+
+        //  path = "src/main/resources/test1.json";
+        //  path = "src/main/resources/test1.json";
+
+        // To read JSON file
         ObjectMapper objecMapper = new ObjectMapper();
         File file = new File(path);
         HashMap<String, HashMap> map = objecMapper.readValue(file, HashMap.class);
@@ -26,6 +32,7 @@ public class Main {
 //
 //        int outletsCount = (int) machine.get("outlets").get("count_n");  // modal
 //        Machines machines = new Machines(outletsCount,BeveragesJson);
+
 
         PrepareDrink prepareDrink = PrepareDrink.getInstance(machine);
         prepareDrink.process();

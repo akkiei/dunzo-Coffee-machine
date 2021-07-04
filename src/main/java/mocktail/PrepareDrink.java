@@ -91,7 +91,7 @@ public class PrepareDrink {
     }
 
     public void reset() {
-        System.out.println("Resetting\n");
+        System.out.println("\nReset the machine\n");
         this.stopMachine();
         this.inventoryManager.resetInventory();
     }
